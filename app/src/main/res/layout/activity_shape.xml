@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_shape"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.maiml.openglesdemo.ui.ShapeActivity">
+
+
+    <Button
+        android:text="trangle"
+        android:id="@+id/trangle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+    <Button
+        android:text="square"
+        android:id="@+id/square"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+    <Button
+        android:text="circle"
+        android:id="@+id/circle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+    <Button
+        android:text="cube"
+        android:id="@+id/cube"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+
+
+</LinearLayout>
