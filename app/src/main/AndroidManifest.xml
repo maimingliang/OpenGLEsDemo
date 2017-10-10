@@ -53,6 +53,8 @@
         </activity>
         <activity android:name=".ui.ImageActivity">
         </activity>
+        <activity android:name=".ui.FilterImageActivity">
+        </activity>
     </application>
 
 </manifest>
