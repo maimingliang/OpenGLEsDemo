@@ -40,6 +40,12 @@ public class ShapeActivity extends AppCompatActivity {
                 startActivity(new Intent(ShapeActivity.this, CubeActivity.class));
             }
         });
+        findViewById(R.id.cone).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ShapeActivity.this, ConeActivity.class));
+            }
+        });
 
     }
 }

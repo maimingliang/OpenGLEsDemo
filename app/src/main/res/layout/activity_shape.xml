@@ -29,6 +29,11 @@
         android:id="@+id/cube"
         android:layout_width="match_parent"
         android:layout_height="40dp"/>
+    <Button
+        android:text="cone"
+        android:id="@+id/cone"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
 
 
 </LinearLayout>
