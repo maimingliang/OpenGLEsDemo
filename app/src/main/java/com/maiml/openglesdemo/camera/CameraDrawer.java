@@ -5,6 +5,7 @@ import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 
+import com.maiml.openglesdemo.filter.Filter;
 import com.maiml.openglesdemo.utils.Gl2Utils;
 import com.maiml.openglesdemo.utils.MatrixUtils;
 import com.maiml.openglesdemo.utils.ShaderUtils;
@@ -90,6 +91,9 @@ public class CameraDrawer implements GLSurfaceView.Renderer{
             0,2,3
     };
 
+
+
+
     private int textureType=0;      //默认使用Texture2D0
 
     private int mPositionHandle;
@@ -98,6 +102,7 @@ public class CameraDrawer implements GLSurfaceView.Renderer{
     private int uCoordMatrixHandle;
     private int uTextureSamplerHandle;
     private int mTextureID;
+    private int vChangeColorHandle;
 
 
     public CameraDrawer(Context context) {
@@ -178,6 +183,9 @@ public class CameraDrawer implements GLSurfaceView.Renderer{
         uMatrixHandle=GLES20.glGetUniformLocation(mProgram,"vMatrix");
         uCoordMatrixHandle=GLES20.glGetUniformLocation(mProgram,"vCoordMatrix");
         uTextureSamplerHandle=GLES20.glGetUniformLocation(mProgram,"vTexture");
+        vChangeColorHandle=GLES20.glGetUniformLocation(mProgram,"vChangeColor");
+
+
 
     }
 
@@ -239,6 +247,7 @@ public class CameraDrawer implements GLSurfaceView.Renderer{
     protected void onSetExpandData(){
         GLES20.glUniformMatrix4fv(uMatrixHandle,1,false,matrix,0);
         GLES20.glUniformMatrix4fv(uCoordMatrixHandle,1,false,mCoordMatrix,0);
+        GLES20.glUniform3fv(vChangeColorHandle,1, Filter.GRAY.data(),0);
     }
     /**
      * 绑定默认纹理
