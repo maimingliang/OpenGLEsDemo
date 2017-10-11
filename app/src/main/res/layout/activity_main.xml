@@ -28,4 +28,12 @@
         android:id="@+id/filter"
         android:layout_width="match_parent"
         android:layout_height="40dp"/>
+
+
+    <Button
+        android:text="相机处理"
+        android:id="@+id/camera"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+
 </LinearLayout>
