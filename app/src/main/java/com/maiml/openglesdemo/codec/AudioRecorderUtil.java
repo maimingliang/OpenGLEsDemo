@@ -80,7 +80,7 @@ public class AudioRecorderUtil {
      * 创建默认录音对象
      * @param fileName
      */
-    private void createDefaultAudio(String fileName) {
+    public void createDefaultAudio(String fileName) {
 
         // 获得缓冲区字节大小
         mBufferSize = AudioRecord.getMinBufferSize(AUDIO_SAMPLE_RATE,
@@ -170,7 +170,7 @@ public class AudioRecorderUtil {
 
         Log.e("tag","start recording " + mAudioRecord.getState());
         mAudioRecord.startRecording();
-
+        status = Status.STATUS_START;
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -198,7 +198,7 @@ public class AudioRecorderUtil {
             String currFileName = fileName;
             if(status == Status.STATUS_PAUSE){
                 //假如是暂停录音 将文件名后面加个数字,防止重名文件内容被覆盖
-                currFileName += filesName.size();
+//                currFileName += filesName.size();
             }
 
             filesName.add(currFileName);

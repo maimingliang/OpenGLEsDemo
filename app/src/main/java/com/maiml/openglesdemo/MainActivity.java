@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.maiml.openglesdemo.camera.CameraActivity;
+import com.maiml.openglesdemo.ui.AudioRecordActivity;
+import com.maiml.openglesdemo.ui.AudioRecordActivity2;
 import com.maiml.openglesdemo.ui.EGLBackActivity;
 import com.maiml.openglesdemo.ui.FBOActivity;
 import com.maiml.openglesdemo.ui.FilterImageActivity;
@@ -55,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, EGLBackActivity.class));
+            }
+        });
+
+        findViewById(R.id.audiorecord).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AudioRecordActivity2.class));
             }
         });
     }
