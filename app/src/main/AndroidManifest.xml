@@ -59,6 +59,8 @@
         </activity>
         <activity android:name=".ui.FBOActivity">
         </activity>
+        <activity android:name=".ui.EGLBackActivity">
+        </activity>
     </application>
 
 </manifest>

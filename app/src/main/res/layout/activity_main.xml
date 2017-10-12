@@ -40,5 +40,10 @@
         android:id="@+id/fbo"
         android:layout_width="match_parent"
         android:layout_height="40dp"/>
+    <Button
+        android:text="EGL后台处理"
+        android:id="@+id/egl"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
 
 </LinearLayout>
