@@ -1,7 +1,6 @@
 package com.maiml.openglesdemo.codec;
 
 import android.media.AudioFormat;
-import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
@@ -10,7 +9,6 @@ import android.media.MediaRecorder;
 import android.os.Build;
 import android.util.Log;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -76,7 +74,7 @@ public class AudioEncoder implements Runnable {
 
 
 
-    private void prepare() throws IOException {
+    public void prepare() throws IOException {
 
         fos = new FileOutputStream(mSavePath);
 
@@ -84,7 +82,7 @@ public class AudioEncoder implements Runnable {
         MediaFormat format = MediaFormat.createAudioFormat(mime,sampleRate,channelCount);
         format.setInteger(MediaFormat.KEY_AAC_PROFILE, MediaCodecInfo.CodecProfileLevel.AACObjectLC);
         format.setInteger(MediaFormat.KEY_BIT_RATE,rate);
-        mEnc = MediaCodec.createByCodecName(mime);
+        mEnc = MediaCodec.createEncoderByType(mime);
         mEnc.configure(format,null,null,MediaCodec.CONFIGURE_FLAG_ENCODE);
 
 
@@ -133,17 +131,18 @@ public class AudioEncoder implements Runnable {
 
     //TODO Add End Flag
     private void readOutputData() throws IOException{
-
-        int index=mEnc.dequeueInputBuffer(-1);
+        //之前的音频录制是直接循环读取，然后写入文件，这里需要做编码处理再写入文件
+        //这里的处理就是和之前传送带取盒子放原料的流程一样了，注意一般在子线程中循环处理
+        int index=mEnc.dequeueInputBuffer(-1);//得到一个空盒子
 
         if(index >= 0){
 
              ByteBuffer buffer=getInputBuffer(index);
              buffer.clear();
-            int length = mRecorder.read(buffer, bufferSize);
+            int length = mRecorder.read(buffer, bufferSize); //往盒子填充原料
 
             if(length > 0){
-                mEnc.queueInputBuffer(index,0,length,System.nanoTime()/1000,0);
+                mEnc.queueInputBuffer(index,0,length,System.nanoTime()/1000,0); //放回取出传送带的位置
             }else{
                 Log.e("wuwang","length-->"+length);
             }
@@ -155,7 +154,7 @@ public class AudioEncoder implements Runnable {
         int outIndex = 0;
 
         do {
-            outIndex=mEnc.dequeueOutputBuffer(mInfo,0);
+            outIndex=mEnc.dequeueOutputBuffer(mInfo,0);// 取出加工好的东西
             Log.e("wuwang","audio flag---->"+mInfo.flags+"/"+outIndex);
 
             if(outIndex >= 0){

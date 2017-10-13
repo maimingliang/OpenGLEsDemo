@@ -1,13 +1,14 @@
 package com.maiml.openglesdemo.ui;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.maiml.openglesdemo.R;
-import com.maiml.openglesdemo.codec.AudioRecorderUtil;
+import com.maiml.openglesdemo.codec.AudioDecoder;
+import com.maiml.openglesdemo.codec.AudioEncoder;
 import com.maiml.openglesdemo.utils.PCMPlayer;
 
 import java.io.ByteArrayOutputStream;
@@ -25,6 +26,8 @@ public class AudioRecordActivity extends AppCompatActivity {
     private Button btnPlay;
     private PCMPlayer pcmPlayer;
 
+    private boolean isEncode = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +40,30 @@ public class AudioRecordActivity extends AppCompatActivity {
         btnRecord = (Button) findViewById(R.id.btn_record);
         btnStop = (Button) findViewById(R.id.btn_stop);
         btnPlay = (Button) findViewById(R.id.btn_play);
-        AudioRecorderUtil.getInstance().createDefaultAudio("/sdcard/mm.pcm");
+
+        final AudioEncoder audioEncoder = new AudioEncoder();
+
+        final AudioDecoder audioDecoder = new AudioDecoder("/sdcard/mm.aac");
+
+        audioEncoder.setmSavePath("/sdcard/mm.aac");
+
+        try {
+            audioEncoder.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         btnRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e("tag","----record");
-                AudioRecorderUtil.getInstance().startRecoder(null);
+                isEncode = true;
+                try {
+                    audioEncoder.start();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
@@ -50,7 +71,13 @@ public class AudioRecordActivity extends AppCompatActivity {
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AudioRecorderUtil.getInstance().stopRecord();
+
+                if(isEncode){
+                    audioEncoder.stop();
+                }else{
+                    audioDecoder.stop();
+                }
+
             }
         });
 
@@ -58,7 +85,8 @@ public class AudioRecordActivity extends AppCompatActivity {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                play();
+                isEncode = false;
+                audioDecoder.start();
             }
         });
 
@@ -154,6 +182,6 @@ public class AudioRecordActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        pcmPlayer.destoryPlay();
+
     }
 }

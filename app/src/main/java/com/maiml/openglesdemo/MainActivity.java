@@ -7,12 +7,12 @@ import android.view.View;
 
 import com.maiml.openglesdemo.camera.CameraActivity;
 import com.maiml.openglesdemo.ui.AudioRecordActivity;
-import com.maiml.openglesdemo.ui.AudioRecordActivity2;
 import com.maiml.openglesdemo.ui.EGLBackActivity;
 import com.maiml.openglesdemo.ui.FBOActivity;
 import com.maiml.openglesdemo.ui.FilterImageActivity;
 import com.maiml.openglesdemo.ui.ImageActivity;
 import com.maiml.openglesdemo.ui.ShapeActivity;
+import com.maiml.openglesdemo.ui.VideoEncoderActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,7 +63,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.audiorecord).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AudioRecordActivity2.class));
+                startActivity(new Intent(MainActivity.this, AudioRecordActivity.class));
+            }
+        });
+        findViewById(R.id.video_encoder).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, VideoEncoderActivity.class));
             }
         });
     }

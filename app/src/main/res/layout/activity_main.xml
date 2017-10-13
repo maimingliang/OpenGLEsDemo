@@ -51,5 +51,10 @@
         android:id="@+id/audiorecord"
         android:layout_width="match_parent"
         android:layout_height="40dp"/>
+    <Button
+        android:text="video_encoder"
+        android:id="@+id/video_encoder"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
 
 </LinearLayout>

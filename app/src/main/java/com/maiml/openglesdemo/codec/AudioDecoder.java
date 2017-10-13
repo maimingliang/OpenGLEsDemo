@@ -12,8 +12,6 @@ import android.util.Log;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-import static android.os.Looper.prepare;
-
 /**
  *
  *
@@ -147,6 +145,7 @@ public class AudioDecoder {
             }
 
 
+            release();
 
         }
 
