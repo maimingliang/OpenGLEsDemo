@@ -11,6 +11,7 @@ import com.maiml.openglesdemo.ui.EGLBackActivity;
 import com.maiml.openglesdemo.ui.FBOActivity;
 import com.maiml.openglesdemo.ui.FilterImageActivity;
 import com.maiml.openglesdemo.ui.ImageActivity;
+import com.maiml.openglesdemo.ui.OpenGlPlayVideoActivity;
 import com.maiml.openglesdemo.ui.ShapeActivity;
 import com.maiml.openglesdemo.ui.VideoEncoderActivity;
 
@@ -70,6 +71,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, VideoEncoderActivity.class));
+            }
+        });
+
+        findViewById(R.id.video_play).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, OpenGlPlayVideoActivity.class));
             }
         });
     }
