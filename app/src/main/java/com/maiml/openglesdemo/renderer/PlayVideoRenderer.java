@@ -12,7 +12,6 @@ import android.opengl.Matrix;
 import android.util.Log;
 import android.view.Surface;
 
-import com.maiml.openglesdemo.R;
 import com.maiml.openglesdemo.utils.MatrixUtils;
 import com.maiml.openglesdemo.utils.ShaderUtils;
 import com.maiml.openglesdemo.utils.TextureHelper;
@@ -96,6 +95,10 @@ public class PlayVideoRenderer implements GLSurfaceView.Renderer, MediaPlayer.On
         mediaPlayer.setOnVideoSizeChangedListener(this);
     }
 
+    public void setSurfaceTexture(SurfaceTexture surfaceTexture) {
+        this.surfaceTexture = surfaceTexture;
+    }
+
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 
@@ -112,10 +115,11 @@ public class PlayVideoRenderer implements GLSurfaceView.Renderer, MediaPlayer.On
         aTextureCoordHandle=GLES20.glGetAttribLocation(programId,"aTexCoord");
 
 
-        textureId = TextureHelper.createTextureID();
+        if(surfaceTexture == null){
+            textureId = TextureHelper.createTextureID();
+            surfaceTexture = new SurfaceTexture(textureId);
+        }
 
-
-        surfaceTexture = new SurfaceTexture(textureId);
         surfaceTexture.setOnFrameAvailableListener(this);
 
         Surface surface = new Surface(surfaceTexture);

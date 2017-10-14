@@ -1,17 +1,18 @@
 package com.maiml.openglesdemo.ui;
 
 import android.opengl.GLSurfaceView;
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.maiml.openglesdemo.R;
+import com.maiml.openglesdemo.codec.SurfaceEncoder;
 import com.maiml.openglesdemo.renderer.PlayVideoRenderer;
 
 public class OpenGlPlayVideoActivity extends AppCompatActivity {
 
     private GLSurfaceView glSurfaceView;
     private PlayVideoRenderer playVideoRenderer;
+    private SurfaceEncoder mSurfaceEncoder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,13 @@ public class OpenGlPlayVideoActivity extends AppCompatActivity {
 //         path = "/sdcard/DCIM/Camera/20170828_193410.mp4";
 //         path = "/sdcard/DCIM/CUT/20171013_210948_meger.mp4";
 
+        mSurfaceEncoder = new SurfaceEncoder();
+        mSurfaceEncoder.VideoEncodePrepare();
+
+
         playVideoRenderer = new PlayVideoRenderer(this,path);
+
+
         glSurfaceView.setRenderer(playVideoRenderer);
         glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
     }
