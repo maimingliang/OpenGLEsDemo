@@ -223,7 +223,7 @@ public class PlayVideoRenderer implements GLSurfaceView.Renderer, MediaPlayer.On
     }
 
 
-     private static final boolean VERBOSE = false;           // lots of logging
+    private static final boolean VERBOSE = false;           // lots of logging
 
     private static final int MAX_FRAMES = 400;       // stop extracting after this many
 
