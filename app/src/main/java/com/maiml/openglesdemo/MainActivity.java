@@ -8,6 +8,7 @@ import android.view.View;
 import com.maiml.openglesdemo.camera.CameraActivity;
 import com.maiml.openglesdemo.ui.AudioRecordActivity;
 import com.maiml.openglesdemo.ui.EGLBackActivity;
+import com.maiml.openglesdemo.ui.EGLPlayVideoActivity;
 import com.maiml.openglesdemo.ui.FBOActivity;
 import com.maiml.openglesdemo.ui.FilterImageActivity;
 import com.maiml.openglesdemo.ui.ImageActivity;
@@ -78,6 +79,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, OpenGlPlayVideoActivity.class));
+            }
+        });
+
+        findViewById(R.id.egl_handle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, EGLPlayVideoActivity.class));
             }
         });
     }

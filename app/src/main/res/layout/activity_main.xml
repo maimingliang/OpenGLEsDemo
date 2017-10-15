@@ -62,4 +62,11 @@
         android:id="@+id/video_play"
         android:layout_width="match_parent"
         android:layout_height="40dp"/>
+
+
+    <Button
+        android:text="egl处理视频"
+        android:id="@+id/egl_handle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
 </LinearLayout>

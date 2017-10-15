@@ -20,6 +20,30 @@ public enum MatrixUtils {
     public static final int TYPE_FITSTART=3;
     public static final int TYPE_FITEND=4;
 
+    /**
+     * @return the original texture coordinate
+     */
+    public static float[] getOriginalTextureCo(){
+        return new float[]{
+                1f,0f,
+                0f,0f,
+                1f,1f,
+                0f,1f
+        };
+    }
+
+    /**
+     * @return the original vertex coordinate
+     */
+    public static float[] getOriginalVertexCo(){
+        return new float[]{
+                1f,-1f,0f,
+                -1f,-1f,0f,
+                1f,1f,0f,
+                -1f,1f,0f
+        };
+    }
+
     MatrixUtils(){
 
     }

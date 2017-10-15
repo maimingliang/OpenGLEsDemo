@@ -53,8 +53,9 @@
         <activity android:name=".ui.AudioRecordActivity" />
         <activity android:name=".ui.AudioRecordActivity2" />
         <activity android:name=".ui.AudioRecordActivity3" />
-        <activity android:name=".ui.VideoEncoderActivity"></activity>
-        <activity android:name=".ui.OpenGlPlayVideoActivity"></activity>
+        <activity android:name=".ui.VideoEncoderActivity" />
+        <activity android:name=".ui.OpenGlPlayVideoActivity" />
+        <activity android:name=".ui.EGLPlayVideoActivity"></activity>
     </application>
 
 </manifest>
